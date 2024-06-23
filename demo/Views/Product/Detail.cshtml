@@ -1,0 +1,14 @@
+﻿@model Product
+
+<div class="container col-md-8 text-center card bg-light">
+    <div class="row">
+        <div class="col">
+            <img src="@Model.Image" width="300" height="350" alt="product image" />
+        </div>
+        <div class="col">
+            <h1 class="text text-primary">@Model.Name</h1>
+            <h2 class="text-text-success">@Model.Brand.Name</h2>
+            <h3 class="text text-danger">$@Model.Price</h3>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@model Job
+
+<div class="container col-md-8 card  bg-light">
+    <h1 class="text text-center text-danger">Add new Job</h1>
+    <form asp-controller="Job" asp-action="Add" method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Skills">Skills (Separated by commas)</label>
+            <input asp-for="Skills" class="form-control" />
+            <span asp-validation-for="Skills" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Requiment"></label>
+            <input asp-for="Requiment" class="form-control"/>
+            <span asp-validation-for="Requiment" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Salary"></label>
+            <input asp-for="Salary" class="form-control" />
+            <span asp-validation-for="Salary" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="DueDate"></label>
+            <input asp-for="DueDate" class="form-control" type="datetime-local"/>
+            <span asp-validation-for="DueDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Description"></label>
+            <input asp-for="Description" style="height:100px" class="form-control" />
+            <span asp-validation-for="Description"  class="text-danger"></span>
+        </div>
+        <div class="form-group text-right">
+            <input type="submit" value="Add" class="btn btn-primary" />
+        </div>
+    </form>
+</div>

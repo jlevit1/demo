@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Job>
+
+<div class="container col-md-12 text-center">
+    <table class="table table-bordered">
+        <tr>
+            <th colspan="8" class="text text-primary h1">JOB List</th>
+        </tr>
+        <tr>
+            <th colspan="2">
+                <a class="btn btn-outline-warning" asp-controller="Job" asp-action="SortDesc">Name (Z-A)</a>
+                <a class="btn btn-outline-success" asp-controller="Job" asp-action="SortAsc">Name (A-Z)</a>
+            </th>
+            <th colspan="4">
+                <form asp-controller="Job" asp-action="Search" method="post">
+                    <input class="form-control" type="search" name="keyword" placeholder="Search by name" />
+                </form>
+            </th>
+            <th colspan="2" class="text text-primary ">
+                @if (User.Identity.IsAuthenticated && User.IsInRole("Recuiter"))
+                {
+                    <a class="btn btn-primary ml-sm-1" asp-controller="Job" asp-action="Add">
+                        Add
+                    </a>
+                }
+            </th>
+        </tr>
+        <tr>
+            <th>Job Id</th>
+            <th>Name</th>
+            <th>Skills</th>
+            <th>Requiment</th>
+            <th>Due date</th>
+            <th>Salary</th>
+            <th>Action</th>
+        </tr>
+        @foreach (var Job in Model)
+        {
+            <tr>
+                <td>@Job.Id</td>
+                <td>@Job.Name</td>
+                <td>
+                    @Job.Skills
+                </td>
+                <td>
+                    @Job.Requiment
+                </td>
+                <td>
+                    @Job.DueDate
+                </td>
+                <td>
+                    $@Job.Salary
+                </td>
+                <td style="width:230px">
+                    <a class="btn btn-warning" asp-controller="Job" asp-action="Detail" asp-route-id="@Job.Id">Detail</a>
+                    <a class="btn btn-warning" asp-controller="Job" asp-action="Edit" asp-route-id="@Job.Id">Edit</a>
+                    <a class="btn btn-danger" asp-controller="Job" asp-action="Delete" asp-route-id="@Job.Id"
+                       onclick="return confirm('Are you sure to delete this Job ?');">Delete</a>
+                </td>
+            </tr>
+        }
+    </table>
+</div>

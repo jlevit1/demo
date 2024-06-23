@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Job>
+<div class="container-fluid">
+    <form asp-controller="Home" asp-action="Search" method="post">
+        <input class="form-control mb-3" type="search" name="keyword" placeholder="Enter to seacrch" />
+    </form>
+    @foreach (var Job in Model)
+    {
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-4">
+                    <img src="@Job.Recuiter.Image" width="250" height="220" alt="product image" />
+                </div>
+                <div class="col-8 mb-3">
+                    <h4 class="text text-success mt-3">Name: @Job.Name</h4>
+                    <div class="">Skills: @Job.Skills</div>
+                    <div class="">Requiment: @Job.Requiment</div>
+                    <div class="">Salary: $@Job.Salary</div>
+                    <div class="">Description: @Job.Description</div>
+                    @if (User.Identity.IsAuthenticated && User.IsInRole("Candidate"))
+                    {
+                        <div class="form-group  text-right mr-3">
+                            <a class="btn btn-primary" asp-controller="Home" asp-action="Apply" asp-route-id="@Job.Id">Apply</a>
+                        </div>
+                    }
+                  </div>
+             </div>
+        </div>
+    }
+</div>

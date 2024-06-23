@@ -1,0 +1,52 @@
+﻿@model IEnumerable<Candidate>
+
+<div class="container col-md-10 text-center">
+     <table class="table table-bordered">
+         <tr>
+             <th colspan="8" class="text text-primary h1">Candidate Applied</th>
+         </tr>
+         <tr>
+             <th colspan="2">
+                 <a class="btn btn-outline-warning" asp-controller="Job" asp-action="SortDesc">Name (Z-A)</a>
+                 <a class="btn btn-outline-success" asp-controller="Job" asp-action="SortAsc">Name (A-Z)</a>
+             </th>
+             <th colspan="4">
+                 <form asp-controller="Job" asp-action="Search" method="post">
+                     <input class="form-control" type="search" name="keyword" placeholder="Search by name" />
+                 </form>
+             </th>
+         </tr>
+         <tr>
+             <th>Candidate Id</th>
+             <th>FullName</th>
+             <th>Phone</th>
+             <th>Email</th>
+             <th>Skills</th>
+             <th>CV</th>
+             <th>Action</th>
+         </tr>
+         @foreach (var candidate in Model)
+         {
+             <tr>
+                 <td>@candidate.Id</td>
+
+                 <td>@candidate.FullName</td>
+                 <td>
+                     @candidate.Phone
+                 </td>
+                 <td>
+                     @candidate.Email
+                 </td>
+                 <td>
+                     @candidate.Skills
+                 </td>
+                 <td>
+                     @Html.ActionLink(@candidate.CV, "Download", new { CV = @candidate.CV })
+                 </td>
+                 <td style="width:180px">
+                    <a class="btn btn-primary" asp-controller="Candidate" asp-action="Edit" asp-route-id="@candidate.Id">Edit</a>
+                 </td>
+             </tr>
+         }
+     </table>
+</div>
